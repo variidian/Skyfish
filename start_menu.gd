@@ -3,15 +3,42 @@ extends Node2D
 @onready var options_button = $pop_in/options_button
 @onready var quit_button = $pop_in/quit_button
 @onready var star = $pivot
-var tween:Tween
 
 func _ready() -> void:
-	start_button.grab_focus()
+	stagger_pop_in()
+
+func stagger_pop_in() -> void:
+	var delay_step: float = 0.15
+	var index: int = 0
+	
+	for child in $pop_in.get_children():
+		child.scale = Vector2.ZERO
+		
+		# Handle unique centering logic per type
+		if child is Control:
+			child.pivot_offset = child.size / 2
+		elif child is Sprite2D:
+			child.centered = true
+		
+		# Run the shared tween animation
+		var tween = create_tween().set_parallel(true)
+		var start_delay = index * delay_step
+		
+		tween.tween_property(child, "scale", Vector2.ONE, 0.3)\
+			.set_delay(start_delay)\
+			.set_trans(Tween.TRANS_BACK)\
+			.set_ease(Tween.EASE_OUT)
+			
+		if index == 3:
+			await tween.finished
+			start_button.grab_focus()
+		
+		index += 1
+		
 
 #star turns by 90deg tweening
 func star_turn() -> void:
-	if tween: tween.kill()
-	tween = create_tween()
+	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(star, "rotation_degrees",star.rotation_degrees + 90, 0.5)
 
@@ -44,7 +71,6 @@ func _on_quit_button_focus_entered() -> void:
 	star_turn()
 	
 	button_pop(quit_button)
-	button_pop(start_button)
 	
 	button_shrink(start_button)
 	button_shrink(options_button)
