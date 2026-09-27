@@ -644,6 +644,7 @@ _data = {
 }
 
 [node name="start_menu" type="Node2D" unique_id=831588809]
+scale = Vector2(0.278, 0.278)
 script = ExtResource("1_jwbto")
 
 [node name="Panel" type="Panel" parent="." unique_id=1567028607]
@@ -695,6 +696,7 @@ offset_right = 1776.6462
 offset_bottom = 818.8915
 rotation = -0.3159046
 theme_override_styles/panel = SubResource("StyleBoxFlat_qehbl")
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel7" type="Panel" parent="." unique_id=1063886719]
 offset_left = 398.0
@@ -703,6 +705,7 @@ offset_right = 1752.5479
 offset_bottom = 821.665
 rotation = -0.3159046
 theme_override_styles/panel = SubResource("StyleBoxFlat_os3ys")
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel8" type="Panel" parent="." unique_id=2018459793]
 offset_left = -135.03206
