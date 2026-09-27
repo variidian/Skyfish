@@ -1144,5 +1144,6 @@ polygon = PackedVector2Array(806, 163.0209, 847, 80, 885, 164, 961, 200, 885, 24
 uv = PackedVector2Array(806, 163.0209, 847, 80, 885, 164, 961, 200, 885, 243, 847, 321.9916, 806, 241, 730, 199.97906)
 
 [connection signal="focus_entered" from="pop_in/start_button" to="." method="_on_start_button_focus_entered"]
+[connection signal="pressed" from="pop_in/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="focus_entered" from="pop_in/options_button" to="." method="_on_options_button_focus_entered"]
 [connection signal="focus_entered" from="pop_in/quit_button" to="." method="_on_quit_button_focus_entered"]

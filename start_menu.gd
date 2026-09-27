@@ -74,3 +74,7 @@ func _on_quit_button_focus_entered() -> void:
 	
 	button_shrink(start_button)
 	button_shrink(options_button)
+
+
+func _on_start_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://game/scene_1.tscn")
