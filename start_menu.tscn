@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dw1usuxomykt8" path="res://assets/button.png" id="3_ctwoq"]
 [ext_resource type="FontFile" uid="uid://dxy8e2p65pyq7" path="res://assets/Space_Mono/SpaceMono-Bold.ttf" id="3_ppfnh"]
 [ext_resource type="Texture2D" uid="uid://cgxe7lddky70x" path="res://assets/button__.png" id="4_ctwoq"]
+[ext_resource type="Shader" uid="uid://dktvqy3w3cp7t" path="res://start_menu.gdshader" id="6_ppfnh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_312mj"]
 bg_color = Color(0.09411765, 0, 0.9882353, 1)
@@ -643,6 +644,10 @@ _data = {
 &"star_turn": SubResource("Animation_xsckg")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_un0pm"]
+shader = ExtResource("6_ppfnh")
+shader_parameter/pixel_size = 6
+
 [node name="start_menu" type="Node2D" unique_id=831588809]
 scale = Vector2(0.278, 0.278)
 script = ExtResource("1_jwbto")
@@ -1145,6 +1150,21 @@ scale = Vector2(2, 1.9752067)
 color = Color(0.5529412, 1, 0.4862745, 1)
 polygon = PackedVector2Array(806, 163.0209, 847, 80, 885, 164, 961, 200, 885, 243, 847, 321.9916, 806, 241, 730, 199.97906)
 uv = PackedVector2Array(806, 163.0209, 847, 80, 885, 164, 961, 200, 885, 243, 847, 321.9916, 806, 241, 730, 199.97906)
+
+[node name="pixellate filter" type="Control" parent="." unique_id=317275692]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1154.6763
+offset_bottom = 651.07916
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="pixellate filter" unique_id=49814053]
+material = SubResource("ShaderMaterial_un0pm")
+layout_mode = 0
+offset_left = -7.1942444
+offset_top = -3.5971375
+offset_right = 1151.0793
+offset_bottom = 647.48206
 
 [connection signal="focus_entered" from="pop_in/start_button" to="." method="_on_start_button_focus_entered"]
 [connection signal="pressed" from="pop_in/start_button" to="." method="_on_start_button_pressed"]
