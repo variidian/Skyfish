@@ -3,6 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://e6vdaptmgf7u" path="res://assets/ch1-sky1.png" id="1_b5kaa"]
 [ext_resource type="TileSet" uid="uid://cdd0vbl7fdcyi" path="res://game/grass_ground.tres" id="2_or2yn"]
 [ext_resource type="PackedScene" uid="uid://dhxvc88k3rlyr" path="res://game/player.tscn" id="3_or2yn"]
+[ext_resource type="Shader" uid="uid://das83rfdjc4uv" path="res://game/grass.gdshader" id="3_ufar7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5y0b"]
+shader = ExtResource("3_ufar7")
 
 [node name="scene1" type="Node2D" unique_id=1722939185]
 
@@ -15,6 +19,7 @@ tile_map_data = PackedByteArray("AAAAABUAAQAEABsAAAABABUAAQAFABsAAAACABUAAQAGABs
 tile_set = ExtResource("2_or2yn")
 
 [node name="grass" type="TileMapLayer" parent="ground" unique_id=1997136015]
+material = SubResource("ShaderMaterial_w5y0b")
 tile_map_data = PackedByteArray("AAABABEAAQAEAAcAAAACABEAAQAFAAcAAAAEABEAAQAGAA8AAAAHABEAAQAKAA8AAAAIABIAAQALAA8AAAAGABEAAQALAA8AAAAMABIAAQANAA8AAAANABIAAQAOAA8AAAAQABIAAQAPAA8AAAAaABAAAQAPAA8AAAAXABAAAQAZAAcAAAAZABAAAQAVAA8AAAAPABIAAQANAAcAAAADABEAAQAIAAcAAAAYABAAAQAUAAcAAAA=")
 tile_set = ExtResource("2_or2yn")
 

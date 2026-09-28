@@ -16,3 +16,7 @@ texture = ExtResource("1_dadds")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2040376291]
 shape = SubResource("RectangleShape2D_312mj")
+
+[node name="coyote_timer" type="Timer" parent="." unique_id=1792794048]
+wait_time = 0.1
+one_shot = true
