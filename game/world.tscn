@@ -1,27 +1,53 @@
 [gd_scene format=4 uid="uid://db36iqmiuddp4"]
 
-[ext_resource type="Texture2D" uid="uid://e6vdaptmgf7u" path="res://assets/ch1-sky1.png" id="1_b5kaa"]
-[ext_resource type="TileSet" uid="uid://cdd0vbl7fdcyi" path="res://game/grass_ground.tres" id="2_or2yn"]
-[ext_resource type="PackedScene" uid="uid://dhxvc88k3rlyr" path="res://game/player.tscn" id="3_or2yn"]
-[ext_resource type="Shader" uid="uid://das83rfdjc4uv" path="res://game/grass.gdshader" id="3_ufar7"]
+[ext_resource type="Texture2D" uid="uid://e6vdaptmgf7u" path="res://assets/ch1-sky1.png" id="1_4xpgs"]
+[ext_resource type="Script" uid="uid://dij737yjxi0a3" path="res://game/world.gd" id="1_805w3"]
+[ext_resource type="TileSet" uid="uid://cdd0vbl7fdcyi" path="res://game/grass_ground.tres" id="2_805w3"]
+[ext_resource type="Shader" uid="uid://das83rfdjc4uv" path="res://game/grass.gdshader" id="3_fhh06"]
+[ext_resource type="PackedScene" uid="uid://dhxvc88k3rlyr" path="res://game/player.tscn" id="4_m4twg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w5y0b"]
-shader = ExtResource("3_ufar7")
+shader = ExtResource("3_fhh06")
 
-[node name="scene1" type="Node2D" unique_id=1722939185]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_312mj"]
+size = Vector2(320, 180)
 
-[node name="bg" type="Sprite2D" parent="." unique_id=1726512487]
+[node name="world" type="Node2D" unique_id=1722939185]
+script = ExtResource("1_805w3")
+
+[node name="rooms" type="Node2D" parent="." unique_id=2021240079]
+
+[node name="room1" type="Sprite2D" parent="rooms" unique_id=54255658]
+
+[node name="bg" type="Sprite2D" parent="rooms/room1" unique_id=1726512487]
 position = Vector2(160, 90)
-texture = ExtResource("1_b5kaa")
+texture = ExtResource("1_4xpgs")
 
-[node name="ground" type="TileMapLayer" parent="." unique_id=2043495448]
+[node name="ground" type="TileMapLayer" parent="rooms/room1" unique_id=2043495448]
 tile_map_data = PackedByteArray("AAAAABUAAQAEABsAAAABABUAAQAFABsAAAACABUAAQAGABsAAAADABUAAQAHABsAAAAEABUAAQAIABsAAAAFABUAAQAIABsAAAAGABUAAQAJABsAAAAHABUAAQAFABsAAAAIABUAAQAKABsAAAAJABUAAQALABsAAAAKABUAAQAMABsAAAALABUAAQAMABsAAAAAABYAAQAFAB0AAAABABYAAQAFAB0AAAACABYAAQAFAB0AAAADABYAAQAFAB0AAAAEABYAAQAFAB0AAAAFABYAAQAFAB0AAAAGABYAAQAFAB0AAAAHABYAAQAFAB0AAAAIABYAAQAFAB0AAAAJABYAAQAFAB0AAAAKABYAAQAFAB0AAAALABYAAQAFAB0AAAAAABQAAQAEABoAAAABABQAAQAFABoAAAACABQAAQAGABoAAAADABQAAQAFABoAAAAEABQAAQAKABkAAAAFABQAAQANABkAAAAGABQAAQAJABgAAAAHABQAAQAGABgAAAAIABQAAQAHABgAAAAJABQAAQAGABgAAAAKABQAAQALABEAAAALABQAAQAKABQAAAAAABMAAQAEABkAAAABABMAAQAFABkAAAACABMAAQAFABgAAAADABMAAQAGABgAAAAEABMAAQAHABgAAAAFABMAAQAHABkAAAAGABMAAQAIABoAAAAMABQAAQAGABsAAAAMABUAAQAFAB0AAAAMABYAAQAFAB0AAAANABQAAQAKABsAAAAOABQAAQALABsAAAAPABUAAQAMABsAAAAOABUAAQAFAB0AAAANABUAAQAFAB0AAAANABYAAQAFAB0AAAAOABYAAQAFAB0AAAAPABYAAQAFAB0AAAAPABQAAQAGABoAAAAAABIAAQAEABAAAAABABIAAQAFABAAAAACABIAAQAIABAAAAADABIAAQALABAAAAAEABIAAQAMABAAAAAFABIAAQANABAAAAAGABIAAQAOABAAAAAHABMAAQAPABEAAAAHABIAAQAPABAAAAAIABIAAQAQABAAAAAIABMAAQAPABAAAAAJABMAAQANABAAAAAKABMAAQALABAAAAALABMAAQAMABAAAAAMABMAAQAPABAAAAAOABMAAQAHABAAAAANABMAAQAGABAAAAAPABMAAQAFABAAAAAQABQAAQAPABEAAAAQABUAAQAPABsAAAAQABYAAQAFAB0AAAARABQAAQAQABoAAAARABUAAQAQABgAAAAQABMAAQAPABAAAAAXABEAAQAEABAAAAAWABEAAQADABAAAAAWABIAAQADABEAAAAXABIAAQAEABEAAAAYABEAAQAFABAAAAAYABIAAQAFABEAAAAXABMAAQAEABIAAAAYABMAAQAGABMAAAAZABIAAQAHABIAAAAZABEAAQAHABAAAAAaABIAAQAPABoAAAAaABEAAQAIABAAAAAZABMAAQAIABMAAAAYABQAAQAHABQAAAAXABQAAQAEABQAAAAYABUAAQAFABsAAAAYABYAAQAFAB0AAAAZABQAAQAIABsAAAAZABUAAQAFAB0AAAAaABQAAQAFAB0AAAAaABMAAQAPABsAAAAXABUAAQAEABsAAAAXABYAAQAEABwAAAAaABUAAQAIABwAAAAaABYAAQAPAB0AAAAZABYAAQAHABwAAAAbABEAAQAQABUAAAAbABIAAQAQABYAAAAbABMAAQAQABcAAAA=")
-tile_set = ExtResource("2_or2yn")
+tile_set = ExtResource("2_805w3")
 
-[node name="grass" type="TileMapLayer" parent="ground" unique_id=1997136015]
+[node name="grass" type="TileMapLayer" parent="rooms/room1/ground" unique_id=1997136015]
 material = SubResource("ShaderMaterial_w5y0b")
 tile_map_data = PackedByteArray("AAABABEAAQAEAAcAAAACABEAAQAFAAcAAAAEABEAAQAGAA8AAAAHABEAAQAKAA8AAAAIABIAAQALAA8AAAAGABEAAQALAA8AAAAMABIAAQANAA8AAAANABIAAQAOAA8AAAAQABIAAQAPAA8AAAAaABAAAQAPAA8AAAAXABAAAQAZAAcAAAAZABAAAQAVAA8AAAAPABIAAQANAAcAAAADABEAAQAIAAcAAAAYABAAAQAUAAcAAAA=")
-tile_set = ExtResource("2_or2yn")
+tile_set = ExtResource("2_805w3")
 
-[node name="player" parent="." unique_id=579877416 instance=ExtResource("3_or2yn")]
-position = Vector2(10, 108)
+[node name="room1_bound" type="Area2D" parent="rooms/room1" unique_id=963139237 groups=["room_areas"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rooms/room1/room1_bound" unique_id=1139089319]
+position = Vector2(160, 90)
+shape = SubResource("RectangleShape2D_312mj")
+
+[node name="Marker2D" type="Marker2D" parent="rooms/room1" unique_id=59342344]
+position = Vector2(16, 108)
+
+[node name="room2" type="Sprite2D" parent="rooms" unique_id=1038283198]
+
+[node name="room2_bound" type="Area2D" parent="rooms/room2" unique_id=1652132588 groups=["room_areas"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rooms/room2/room2_bound" unique_id=468555137]
+position = Vector2(480, 90)
+shape = SubResource("RectangleShape2D_312mj")
+
+[node name="player" parent="." unique_id=579877416 instance=ExtResource("4_m4twg")]
+position = Vector2(16, 108)

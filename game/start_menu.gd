@@ -77,4 +77,4 @@ func _on_quit_button_focus_entered() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://game/scene_1.tscn")
+	get_tree().change_scene_to_file("res://game/world.tscn")
