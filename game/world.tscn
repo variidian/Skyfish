@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://e6vdaptmgf7u" path="res://assets/ch1-sky1.png" id="1_4xpgs"]
 [ext_resource type="Script" uid="uid://dij737yjxi0a3" path="res://game/world.gd" id="1_805w3"]
 [ext_resource type="TileSet" uid="uid://cdd0vbl7fdcyi" path="res://game/grass_ground.tres" id="2_805w3"]
+[ext_resource type="Script" uid="uid://cnpxfvy6t6ea0" path="res://game/room_1.gd" id="2_fhh06"]
 [ext_resource type="Shader" uid="uid://das83rfdjc4uv" path="res://game/grass.gdshader" id="3_fhh06"]
 [ext_resource type="PackedScene" uid="uid://dhxvc88k3rlyr" path="res://game/player.tscn" id="4_m4twg"]
 
@@ -18,6 +19,7 @@ script = ExtResource("1_805w3")
 [node name="rooms" type="Node2D" parent="." unique_id=2021240079]
 
 [node name="room1" type="Sprite2D" parent="rooms" unique_id=54255658]
+script = ExtResource("2_fhh06")
 
 [node name="bg" type="Sprite2D" parent="rooms/room1" unique_id=1726512487]
 position = Vector2(160, 90)
@@ -32,9 +34,9 @@ material = SubResource("ShaderMaterial_w5y0b")
 tile_map_data = PackedByteArray("AAABABEAAQAEAAcAAAACABEAAQAFAAcAAAAEABEAAQAGAA8AAAAHABEAAQAKAA8AAAAIABIAAQALAA8AAAAGABEAAQALAA8AAAAMABIAAQANAA8AAAANABIAAQAOAA8AAAAQABIAAQAPAA8AAAAaABAAAQAPAA8AAAAXABAAAQAZAAcAAAAZABAAAQAVAA8AAAAPABIAAQANAAcAAAADABEAAQAIAAcAAAAYABAAAQAUAAcAAAA=")
 tile_set = ExtResource("2_805w3")
 
-[node name="room1_bound" type="Area2D" parent="rooms/room1" unique_id=963139237 groups=["room_areas"]]
+[node name="room1_area" type="Area2D" parent="rooms/room1" unique_id=963139237 groups=["room_areas"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="rooms/room1/room1_bound" unique_id=1139089319]
+[node name="room1_bound" type="CollisionShape2D" parent="rooms/room1/room1_area" unique_id=1139089319]
 position = Vector2(160, 90)
 shape = SubResource("RectangleShape2D_312mj")
 
@@ -43,9 +45,9 @@ position = Vector2(16, 108)
 
 [node name="room2" type="Sprite2D" parent="rooms" unique_id=1038283198]
 
-[node name="room2_bound" type="Area2D" parent="rooms/room2" unique_id=1652132588 groups=["room_areas"]]
+[node name="room2_area" type="Area2D" parent="rooms/room2" unique_id=1652132588 groups=["room_areas"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="rooms/room2/room2_bound" unique_id=468555137]
+[node name="room2_bound" type="CollisionShape2D" parent="rooms/room2/room2_area" unique_id=468555137]
 position = Vector2(480, 90)
 shape = SubResource("RectangleShape2D_312mj")
 
