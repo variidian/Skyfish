@@ -2,10 +2,8 @@ extends Node2D
 
 var current_room
 var current_room_boundaries := {}
-
+var pos
 @onready var player = $player
-
-signal room_bounds_changed
 
 func _ready() -> void:
 	for room in get_tree().get_nodes_in_group("room_areas"):
@@ -22,11 +20,15 @@ func room_entry(body,room): #body, room = arguments from line 7-9. in that speci
 		set_room(room)
 		print(room.name)
 		find_room_bounds()
-		SignalBus.room_bounds_changed.emit(current_room_boundaries)
+		SignalBus.room_bounds_changed.emit(current_room_boundaries, current_room)
+		
+		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property($Camera2D, "position", pos, 0.3)
 
 func find_room_bounds():
 	var room_collision_shape2d = current_room.get_child(0)
-	var pos = room_collision_shape2d.global_position #position returns the center points x + y value
+	pos = room_collision_shape2d.global_position #position returns the center points x + y value
 	var extents = room_collision_shape2d.shape.extents #extents = half sizes measured from the center of the rectangle
 	
 	current_room_boundaries = { #dictionary with the room boundary values
