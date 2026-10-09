@@ -2,6 +2,7 @@ extends Sprite2D
 
 var room_boundaries := {}
 var respawn_marker
+var is_dying
 
 @onready var player = $"../../player"
 
@@ -25,9 +26,19 @@ func _physics_process(delta: float) -> void:
 		death()
 
 func death():
+	
+	if is_dying:
+		return
+	is_dying = true
+	
 	#pause player
 	player.set_physics_process(false)
 	player.set_process_input(false)
+	
+	#death particles
+	%death_particles.global_position = player.global_position
+	%death_particles.emitting = true
+	await %death_particles.finished #wait till particles finish before continuing rest of code
 	
 	#find starting position, based on current room
 	var rect_starting_pos = room_boundaries["pos"]
@@ -44,18 +55,19 @@ func death():
 	
 	#actual animation 
 	var tween = create_tween() 
-	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(death_anim_marker2d, "position", rect_room_pos, 0.1)
+	tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(death_anim_marker2d, "position", rect_room_pos, 0.5)
 	await tween.finished #wait till finihsed tween to continue
 	#reset player pos now the whole screen is covered
 	player.global_position = respawn_marker.global_position # die + reset spawn
-	await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(0.1).timeout
 	var tweentwo = create_tween() 
-	tweentwo.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
-	tweentwo.tween_property(death_anim_marker2d, "position", rect_ending_pos, 0.1)
+	tweentwo.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tweentwo.tween_property(death_anim_marker2d, "position", rect_ending_pos, 0.5)
 	
 	#unpause player + visibility
 	await tweentwo.finished #wait until tween finished playing
 	player.set_physics_process(true)
 	player.set_process_input(true)
 	death_anim_marker2d.hide()
+	is_dying = false

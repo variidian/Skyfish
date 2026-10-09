@@ -7,12 +7,16 @@
 [ext_resource type="Shader" uid="uid://das83rfdjc4uv" path="res://game/grass.gdshader" id="3_fhh06"]
 [ext_resource type="PackedScene" uid="uid://dhxvc88k3rlyr" path="res://game/player.tscn" id="4_m4twg"]
 [ext_resource type="Script" uid="uid://dlp0apfg4ylok" path="res://game/room_2.gd" id="6_m4twg"]
+[ext_resource type="Texture2D" uid="uid://nxq7dtxoysbh" path="res://assets/blackout.png" id="8_0q2ew"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w5y0b"]
 shader = ExtResource("3_fhh06")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_312mj"]
 size = Vector2(320, 180)
+
+[sub_resource type="Gradient" id="Gradient_312mj"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 1, 1)
 
 [node name="world" type="Node2D" unique_id=1722939185]
 script = ExtResource("1_805w3")
@@ -42,7 +46,7 @@ position = Vector2(160, 90)
 shape = SubResource("RectangleShape2D_312mj")
 
 [node name="Marker2D" type="Marker2D" parent="rooms/room1" unique_id=59342344]
-position = Vector2(16, 108)
+position = Vector2(19, 132)
 
 [node name="room2" type="Sprite2D" parent="rooms" unique_id=1038283198]
 script = ExtResource("6_m4twg")
@@ -62,10 +66,10 @@ position = Vector2(480, 90)
 shape = SubResource("RectangleShape2D_312mj")
 
 [node name="Marker2D" type="Marker2D" parent="rooms/room2" unique_id=1742538728]
-position = Vector2(333, 107)
+position = Vector2(334, 122)
 
 [node name="player" parent="." unique_id=579877416 instance=ExtResource("4_m4twg")]
-position = Vector2(16, 108)
+position = Vector2(19, 131)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=337039470]
 position = Vector2(160, 90)
@@ -75,8 +79,28 @@ unique_name_in_owner = true
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="death_anim" unique_id=106872200]
+visible = false
 offset_left = -160.0
 offset_top = -90.0
 offset_right = 160.0
 offset_bottom = 90.0
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="death_anim" unique_id=1024824948]
+texture = ExtResource("8_0q2ew")
+
+[node name="death_particles" type="CPUParticles2D" parent="." unique_id=1857516077]
+unique_name_in_owner = true
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.3
+emission_shape = 1
+emission_sphere_radius = 8.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_312mj")
