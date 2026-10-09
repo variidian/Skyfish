@@ -35,5 +35,6 @@ func find_room_bounds():
 		"top": pos.y - extents.y,
 		"bottom": pos.y + extents.y,
 		"left": pos.x - extents.x,
-		"right": pos.x + extents.x
+		"right": pos.x + extents.x,
+		"pos" : pos
 	}
