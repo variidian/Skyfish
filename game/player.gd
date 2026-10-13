@@ -7,7 +7,11 @@ const jump_height = -300
 @onready var coyote_time = $coyote_timer
 @onready var jump_buffer = $jump_buffer
 
+func _ready():
+	$dust.top_level = true #makes it not follow player regardless of being nested under
+	
 func _physics_process(delta: float) -> void:
+
 	if not is_on_floor():
 		var gravity = get_gravity().y #grab y value of gravity
 		 # If vertical velocity is near 0 (apex), apply less gravity for hang time
@@ -21,9 +25,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and (is_on_floor() || !coyote_time.is_stopped()):
 		velocity.y = jump_height
 		jump_buffer.start()
+		
+		$dust.global_position = global_position + Vector2(0, 5) #set dust position bc it doesnt follow the player
+		$dust.restart()
+		
 
 	if is_on_floor() and !jump_buffer.is_stopped():
 		velocity.y = jump_height
+		
 
 	var direction := Input.get_axis("left", "right")
 	var current_speed = speed if is_on_floor() else air_speed
@@ -37,5 +46,9 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	if was_on_floor and !is_on_floor(): #if was on floor and now isnt, start timer
+	if was_on_floor and !is_on_floor(): #if was on floor and now is in air, start timer
 		coyote_time.start()
+	
+	if !was_on_floor and is_on_floor(): #if was in air, and now is on floor, trigger dust
+		$dust.global_position = global_position + Vector2(0, 5) #set dust position bc it doesnt follow the player
+		$dust.restart()

@@ -4,19 +4,15 @@
 [ext_resource type="Script" uid="uid://dij737yjxi0a3" path="res://game/world.gd" id="1_805w3"]
 [ext_resource type="TileSet" uid="uid://cdd0vbl7fdcyi" path="res://game/grass_ground.tres" id="2_805w3"]
 [ext_resource type="Script" uid="uid://cnpxfvy6t6ea0" path="res://game/room_1.gd" id="2_fhh06"]
-[ext_resource type="Shader" uid="uid://das83rfdjc4uv" path="res://game/grass.gdshader" id="3_fhh06"]
 [ext_resource type="PackedScene" uid="uid://dhxvc88k3rlyr" path="res://game/player.tscn" id="4_m4twg"]
 [ext_resource type="Script" uid="uid://dlp0apfg4ylok" path="res://game/room_2.gd" id="6_m4twg"]
 [ext_resource type="Texture2D" uid="uid://nxq7dtxoysbh" path="res://assets/blackout.png" id="8_0q2ew"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5y0b"]
-shader = ExtResource("3_fhh06")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_312mj"]
 size = Vector2(320, 180)
 
 [sub_resource type="Gradient" id="Gradient_312mj"]
-colors = PackedColorArray(1, 0, 0, 1, 0, 1, 1, 1)
+colors = PackedColorArray(0.09411765, 0, 0.9882353, 1, 0.5529412, 1, 0.4862745, 1)
 
 [node name="world" type="Node2D" unique_id=1722939185]
 script = ExtResource("1_805w3")
@@ -35,7 +31,6 @@ tile_map_data = PackedByteArray("AAAAABUAAQAEABsAAAABABUAAQAFABsAAAACABUAAQAGABs
 tile_set = ExtResource("2_805w3")
 
 [node name="grass" type="TileMapLayer" parent="rooms/room1/ground" unique_id=1997136015]
-material = SubResource("ShaderMaterial_w5y0b")
 tile_map_data = PackedByteArray("AAABABEAAQAEAAcAAAACABEAAQAFAAcAAAAEABEAAQAGAA8AAAAHABEAAQAKAA8AAAAIABIAAQALAA8AAAAGABEAAQALAA8AAAAMABIAAQANAA8AAAANABIAAQAOAA8AAAAQABIAAQAPAA8AAAAaABAAAQAPAA8AAAAXABAAAQAZAAcAAAAZABAAAQAVAA8AAAAPABIAAQANAAcAAAADABEAAQAIAAcAAAAYABAAAQAUAAcAAAA=")
 tile_set = ExtResource("2_805w3")
 

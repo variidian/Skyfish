@@ -21,10 +21,10 @@ func room_entry(body,room): #body, room = arguments from line 7-9. in that speci
 		print(room.name)
 		find_room_bounds()
 		SignalBus.room_bounds_changed.emit(current_room_boundaries, current_room)
-		
+		#room transition animation
 		var tween = create_tween()
 		tween.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN_OUT)
-		tween.tween_property($Camera2D, "position", pos, 0.3)
+		tween.tween_property($Camera2D, "position", pos, 0.4)
 
 func find_room_bounds():
 	var room_collision_shape2d = current_room.get_child(0)
